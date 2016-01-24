@@ -3,13 +3,13 @@ import numpy as py
 import math as math
 from nnBase import * 
 
-# Base class for neural nets
-class simplePcn(nnBase):
+# A realy simple Perceptron network
+class Perceptron(nnBase):
     
     
     def Setup(self,inputs,outputs):
                     
-        super(simplePcn, self).Setup(inputs,outputs)
+        super(Perceptron, self).Setup(inputs,outputs)
         
         # Initialize network
         self.weights = py.random.rand(self.nIn+1,self.nOut)*0.1-0.05

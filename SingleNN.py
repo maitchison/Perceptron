@@ -1,13 +1,10 @@
-"""
-    A Multi layered PCN Neural Net
-"""
-
 import pylab as plt
 from numpy import * 
 import math as math
 from nnBase import *
 
-class LayeredPcn(nnBase):
+# Single layered Neural Net with back propagation.
+class SinglePcn(nnBase):
 
     def Setup(self,inputs,outputs):
         
@@ -66,20 +63,7 @@ class LayeredPcn(nnBase):
 
             
             self.weights = self.weights * weightDecay                             
-            
-            """
-            deltao = (self.targets-self.outputs) * self.outputs * (1.0-self.outputs)
-            #deltah = self.inputs * (1.0-self.inputs)*(py.dot(deltao,transpose(self.weights)))
-            
-            updatew2 = zeros((shape(self.weights)))
-            #updatew1 = learningSpeed*(dot(transpose(self.inputs),deltah[:,:-1]))
-            updatew2 = learningSpeed*(dot(transpose(self.inputs),deltao))
-                        
-            self.weights -= updatew2
-            
-            #self.weights -= learningSpeed*py.dot(py.transpose(self.inputs),self.targets-self.outputs)
-                              
-            """                     
+                    
             error = self.StdError()            
                                     
             if self.logging and (n % 10 == 0):

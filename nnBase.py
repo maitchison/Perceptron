@@ -75,7 +75,7 @@ class nnBase:
                 correctAnswers = correctAnswers + 1
 
         if self.logging:
-            print("Correctly guessed ",correctAnswers, " out of ",samples,"=",correctAnswers/samples*100,"%")
+            print("Correctly guessed ",correctAnswers, " out of ",samples,": error rate of ",100-(correctAnswers/samples*100),"%")
         
         return correctAnswers/samples
         
@@ -97,7 +97,7 @@ class nnBase:
                             
         mean = py.mean(score)
         std = py.std(score)                            
-        print("Completed ",trialIterations, " tests.  mean correctness = ",mean,"% Standard Deviation:",std)
+        print("Completed ",trialIterations, " tests.  mean error = ",mean,"% Standard Deviation:",std)
         
         return mean
         

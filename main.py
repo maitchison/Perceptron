@@ -2,8 +2,9 @@ import os
 import pylab as plt
 from numpy import *
 import time
-from simplePcn import *
-from mlpcn import *
+from Perceptron import *
+from TwoLayerNN import *
+from ThreeLayerNN import *
 from nnBase import ThresholdFunction
 
 # Simple class to hold logic function inputs and targetse
@@ -62,7 +63,7 @@ testingSet = pima[1::2,:8]
 testingTarget = pima[1::2,8:9]
                   
 #p = nnBase.nnBase(LogicFunctions.INPUTS,LogicFunctions.OR)
-p = LayeredPcn()
+p = TwoLayerNN()
 p.Setup(trainingSet,trainingTarget)
 p.logging = True
 p.Train(0.10, 100000)
