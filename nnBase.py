@@ -52,7 +52,7 @@ class nnBase:
     def ConcatBias(self,x):
         return py.concatenate((x,-py.ones((self.nData,1))),axis=1)
 
-    # Runs a set of test data against the network and prints out the error.
+    # Runs a set of test data against the network and returns the fraction correct.
     def Test(self, testInputs, testTargets):                
         
         samples = py.shape(testInputs)[0]
@@ -60,8 +60,9 @@ class nnBase:
         if (py.shape(testTargets)[0] != samples):
             print("Sample length mismatch ",samples, py.shape(testTargets)[0])
             return
-                    
-        testInputs = self.ConcatBias(testInputs)
+                
+        if py.shape(testInputs)[1] == self.nIn:            
+            testInputs = self.ConcatBias(testInputs)
         
         results = self.Forward(testInputs)
         
@@ -74,8 +75,8 @@ class nnBase:
             if (results[i] == testTargets[i]):
                 correctAnswers = correctAnswers + 1
 
-        if self.logging:
-            print("Correctly guessed ",correctAnswers, " out of ",samples,": error rate of ",100-(correctAnswers/samples*100),"%")
+        #if self.logging:
+        #    print("Correctly guessed ",correctAnswers, " out of ",samples,": error rate of ",100-(correctAnswers/samples*100),"%")
         
         return correctAnswers/samples
         
@@ -97,7 +98,7 @@ class nnBase:
                             
         mean = py.mean(score)
         std = py.std(score)                            
-        print("Completed ",trialIterations, " tests.  mean error = ",mean,"% Standard Deviation:",std)
+        print("Completed ",trialIterations, " tests.  mean error = ",100-mean,"% Standard Deviation:",std)
         
         return mean
         

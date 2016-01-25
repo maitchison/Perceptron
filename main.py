@@ -7,6 +7,14 @@ from TwoLayerNN import *
 from ThreeLayerNN import *
 from nnBase import ThresholdFunction
 
+"""
+
+Scores
+    Dual Layer with 1 hidden node = 20 (this is really just a single layer machine
+        
+
+"""
+
 # Simple class to hold logic function inputs and targetse
 class LogicFunctions:    
     INPUTS = array([[0,0],[0,1],[1,0],[1,1]])
@@ -63,11 +71,12 @@ testingSet = pima[1::2,:8]
 testingTarget = pima[1::2,8:9]
                   
 #p = nnBase.nnBase(LogicFunctions.INPUTS,LogicFunctions.OR)
-p = TwoLayerNN()
-p.Setup(trainingSet,trainingTarget)
+p = ThreeLayerNN()
+#p.Setup(4,trainingSet,trainingTarget,testingSet,testingTarget)
+p.Setup(8,8,trainingSet,trainingTarget,testingSet,testingTarget)
 p.logging = True
 p.Train(0.10, 100000)
-p.Test(testingSet, testingTarget)
+print(p.Test(testingSet, testingTarget))
 #p.TrialScore(trainingSet,trainingTarget,testingSet,testingTarget,1000)
 
 # drop a random column
